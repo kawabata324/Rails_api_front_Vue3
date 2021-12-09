@@ -19,9 +19,10 @@
 import { defineComponent } from "vue";
 import { reactive } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
-import axios from "axios";
+import Client from '../api/client'
 
-interface User{
+
+interface User {
   id: number;
   name: string;
   email: string;
@@ -33,10 +34,9 @@ export default defineComponent({
   name: "Home",
   setup() {
     let dataList: User[] = reactive([]);
-    const url = "http://localhost:3004/users";
+    
     onMounted(() => {
-      axios.get(url).then((res) => {
-        console.log(res.data);
+      Client.get('/users').then((res) => {
         res.data.forEach((element: User) => {
           dataList.push(element);
         });
