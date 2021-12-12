@@ -11,8 +11,8 @@
         <input class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" type="email" v-model= "email">
       </div>
       <div>
-        <label>age</label>
-        <input class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" type= "number" v-model="age">
+        <label>password</label>
+        <input class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" type= "string" v-model="password">
       </div>
       <input type="submit" value="送信">
     </form>
@@ -26,12 +26,12 @@ export default defineComponent({
   setup() {
     const name = ref('')
     const email = ref('')
-    const age = ref('')
+    const password = ref('')
     const createUser = ()=>{
-      Client.post('/users', {user: {name: name.value, email: email.value, age: age.value}}).then((res)=>{
+      Client.post('/users', {user: {name: name.value, email: email.value, password: password.value}}).then((res)=>{
         name.value = ''
         email.value = ''
-        age.value = ''
+        password.value = ''
         console.log(res.data)
       })
     }
@@ -39,7 +39,7 @@ export default defineComponent({
       createUser,
       name,
       email,
-      age
+      password
     }
   },
 })

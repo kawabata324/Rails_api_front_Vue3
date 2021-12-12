@@ -10,6 +10,8 @@
         {{ data.email }}
         <label>age</label>
         {{ data.age }}
+        <label>password</label>
+        {{data.password}}
       </li>
     </ul>
   </div>
@@ -26,7 +28,7 @@ interface User {
   id: number;
   name: string;
   email: string;
-  age: number;
+  password: string;
   created_at: Date;
 }
 
@@ -34,7 +36,7 @@ export default defineComponent({
   name: "Home",
   setup() {
     let dataList: User[] = reactive([]);
-    
+
     onMounted(() => {
       Client.get('/users').then((res) => {
         res.data.forEach((element: User) => {
